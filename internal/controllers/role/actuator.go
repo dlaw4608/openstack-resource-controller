@@ -44,8 +44,10 @@ type (
 	resourceReconciler     = interfaces.ResourceReconciler[orcObjectPT, osResourceT]
 	helperFactory          = interfaces.ResourceHelperFactory[orcObjectPT, orcObjectT, resourceSpecT, filterT, osResourceT]
 )
+
 // The frequency to poll when waiting for the resource to become available
 const roleAvailablePollingPeriod = 15 * time.Second
+
 // The frequency to poll when waiting for the resource to be deleted
 const roleDeletingPollingPeriod = 15 * time.Second
 
@@ -80,8 +82,8 @@ func (actuator roleActuator) ListOSResourcesForAdoption(ctx context.Context, orc
 	// Check osclients.ResourceFilter
 
 	listOpts := roles.ListOpts{
-		Name:        getResourceName(orcObject),
-		Description: ptr.Deref(resourceSpec.Description, ""),
+		Name: getResourceName(orcObject),
+		//Description: ptr.Deref(resourceSpec.Description, ""),
 	}
 
 	return actuator.osClient.ListRoles(ctx, listOpts), true
@@ -93,8 +95,8 @@ func (actuator roleActuator) ListOSResourcesForImport(ctx context.Context, obj o
 	// Check osclients.ResourceFilter
 
 	listOpts := roles.ListOpts{
-		Name:        string(ptr.Deref(filter.Name, "")),
-		Description: string(ptr.Deref(filter.Description, "")),
+		Name: string(ptr.Deref(filter.Name, "")),
+		//Description: string(ptr.Deref(filter.Description, "")),
 		// TODO(scaffolding): Add more import filters
 	}
 
@@ -110,8 +112,8 @@ func (actuator roleActuator) CreateResource(ctx context.Context, obj orcObjectPT
 			orcerrors.Terminal(orcv1alpha1.ConditionReasonInvalidConfiguration, "Creation requested, but spec.resource is not set"))
 	}
 	createOpts := roles.CreateOpts{
-		Name:        getResourceName(obj),
-		Description: ptr.Deref(resource.Description, ""),
+		Name: getResourceName(obj),
+		//Description: ptr.Deref(resource.Description, ""),
 		// TODO(scaffolding): Add more fields
 	}
 
@@ -128,9 +130,9 @@ func (actuator roleActuator) CreateResource(ctx context.Context, obj orcObjectPT
 }
 
 func (actuator roleActuator) DeleteResource(ctx context.Context, _ orcObjectPT, resource *osResourceT) progress.ReconcileStatus {
-	if resource.Status == RoleStatusDeleting {
-		return progress.WaitingOnOpenStack(progress.WaitingOnReady, roleDeletingPollingPeriod)
-	}
+	//if resource.Status == RoleStatusDeleting {
+	//	return progress.WaitingOnOpenStack(progress.WaitingOnReady, roleDeletingPollingPeriod)
+	//}
 	return progress.WrapError(actuator.osClient.DeleteRole(ctx, resource.ID))
 }
 
@@ -146,7 +148,7 @@ func (actuator roleActuator) updateResource(ctx context.Context, obj orcObjectPT
 	updateOpts := roles.UpdateOpts{}
 
 	handleNameUpdate(&updateOpts, obj, osResource)
-	handleDescriptionUpdate(&updateOpts, resource, osResource)
+	//handleDescriptionUpdate(&updateOpts, resource, osResource)
 
 	// TODO(scaffolding): add handler for all fields supporting mutability
 
@@ -191,16 +193,16 @@ func needsUpdate(updateOpts roles.UpdateOpts) (bool, error) {
 func handleNameUpdate(updateOpts *roles.UpdateOpts, obj orcObjectPT, osResource *osResourceT) {
 	name := getResourceName(obj)
 	if osResource.Name != name {
-		updateOpts.Name = &name
+		updateOpts.Name = name
 	}
 }
 
-func handleDescriptionUpdate(updateOpts *roles.UpdateOpts, resource *resourceSpecT, osResource *osResourceT) {
-	description := ptr.Deref(resource.Description, "")
-	if osResource.Description != description {
-		updateOpts.Description = &description
-	}
-}
+//func handleDescriptionUpdate(updateOpts *roles.UpdateOpts, resource *resourceSpecT, osResource *osResourceT) {
+//	description := ptr.Deref(resource.Description, "")
+//	if osResource.Description != description {
+//		updateOpts.Description = &description
+//	}
+//}
 
 func (actuator roleActuator) GetResourceReconcilers(ctx context.Context, orcObject orcObjectPT, osResource *osResourceT, controller interfaces.ResourceController) ([]resourceReconciler, progress.ReconcileStatus) {
 	return []resourceReconciler{

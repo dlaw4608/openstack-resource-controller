@@ -68,6 +68,8 @@ type RoleResourceStatus struct {
 	// +optional
 	Description string `json:"description,omitempty"`
 
+	//DomainID string `json:"domainID,omitempty"`
+
 	// TODO(scaffolding): Add more types.
 	// To see what is supported, you can take inspiration from the Role stucture from
 	// github.com/gophercloud/gophercloud/v2/openstack/identity/v3/roles

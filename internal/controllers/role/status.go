@@ -25,11 +25,12 @@ import (
 	"github.com/k-orc/openstack-resource-controller/v2/internal/controllers/generic/progress"
 	orcapplyconfigv1alpha1 "github.com/k-orc/openstack-resource-controller/v2/pkg/clients/applyconfiguration/api/v1alpha1"
 )
+
 // TODO(scaffolding): these are just examples. Change them to the controller's need.
 // Ideally, these constants are defined in gophercloud.
-const RoleStatusAvailable = "available"
-const RoleStatusInUse     = "in-use"
-const RoleStatusDeleting  = "deleting"
+//const RoleStatusAvailable = "Available"
+//const RoleStatusInUse = "in-use"
+//const RoleStatusDeleting = "deleting"
 
 type roleStatusWriter struct{}
 
@@ -52,13 +53,13 @@ func (roleStatusWriter) ResourceAvailableStatus(orcObject *orcv1alpha1.Role, osR
 	}
 	// TODO(scaffolding): add conditions for returning available, for instance:
 
-	if osResource.Status == RoleStatusAvailable || osResource.Status == RoleStatusInUse {
-		return metav1.ConditionTrue, nil
-	}
-
-	// Otherwise we should continue to poll
-	return metav1.ConditionFalse, progress.WaitingOnOpenStack(progress.WaitingOnReady, roleAvailablePollingPeriod)
+	//if osResource.Status == RoleStatusAvailable || osResource.Status == RoleStatusInUse {
+	return metav1.ConditionTrue, nil
 }
+
+// Otherwise we should continue to poll
+//return metav1.ConditionFalse, progress.WaitingOnOpenStack(progress.WaitingOnReady, roleAvailablePollingPeriod)
+//}
 
 func (roleStatusWriter) ApplyResourceStatus(log logr.Logger, osResource *osResourceT, statusApply *statusApplyT) {
 	resourceStatus := orcapplyconfigv1alpha1.RoleResourceStatus().
@@ -67,9 +68,9 @@ func (roleStatusWriter) ApplyResourceStatus(log logr.Logger, osResource *osResou
 	// TODO(scaffolding): add all of the fields supported in the RoleResourceStatus struct
 	// If a zero-value isn't expected in the response, place it behind a conditional
 
-	if osResource.Description != "" {
+	/*if osResource.Description != "" {
 		resourceStatus.WithDescription(osResource.Description)
-	}
+	}*/
 
 	statusApply.WithResource(resourceStatus)
 }
