@@ -4,7 +4,7 @@ kind: TestAssert
 resourceRefs:
     - apiVersion: v1
       kind: Secret
-      name: devstack-clouds
+      name: openstack-clouds
       ref: secret
 assertAll:
     - celExpr: "secret.metadata.deletionTimestamp != 0"
