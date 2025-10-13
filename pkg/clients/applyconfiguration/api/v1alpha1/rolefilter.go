@@ -25,8 +25,7 @@ import (
 // RoleFilterApplyConfiguration represents a declarative configuration of the RoleFilter type for use
 // with apply.
 type RoleFilterApplyConfiguration struct {
-	Name        *apiv1alpha1.OpenStackName `json:"name,omitempty"`
-	Description *string                    `json:"description,omitempty"`
+	Name *apiv1alpha1.OpenStackName `json:"name,omitempty"`
 }
 
 // RoleFilterApplyConfiguration constructs a declarative configuration of the RoleFilter type for use with
@@ -40,13 +39,5 @@ func RoleFilter() *RoleFilterApplyConfiguration {
 // If called multiple times, the Name field is set to the value of the last call.
 func (b *RoleFilterApplyConfiguration) WithName(value apiv1alpha1.OpenStackName) *RoleFilterApplyConfiguration {
 	b.Name = &value
-	return b
-}
-
-// WithDescription sets the Description field in the declarative configuration to the given value
-// and returns the receiver, so that objects can be built by chaining "With" function invocations.
-// If called multiple times, the Description field is set to the value of the last call.
-func (b *RoleFilterApplyConfiguration) WithDescription(value string) *RoleFilterApplyConfiguration {
-	b.Description = &value
 	return b
 }

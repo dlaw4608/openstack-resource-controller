@@ -23,14 +23,16 @@ type RoleResourceSpec struct {
 	// +optional
 	Name *OpenStackName `json:"name,omitempty"`
 
+	// TODO(dlawton): Waiting on Gophercloud release to include description.
+	// Will update this field when description field is available.
 	// description is a human-readable description for the resource.
 	// +kubebuilder:validation:MinLength:=1
 	// +kubebuilder:validation:MaxLength:=255
 	// +optional
-	Description *string `json:"description,omitempty"`
+	// Description *string `json:"description,omitempty"`
 
 	// TODO(scaffolding): Add more types.
-	// To see what is supported, you can take inspiration from the CreateOpts stucture from
+	// To see what is supported, you can take inspiration from the CreateOpts structure from
 	// github.com/gophercloud/gophercloud/v2/openstack/identity/v3/roles
 	//
 	// Until you have implemented mutability for the field, you must add a CEL validation
@@ -45,14 +47,16 @@ type RoleFilter struct {
 	// +optional
 	Name *OpenStackName `json:"name,omitempty"`
 
+	// TODO(dlawton): Waiting on Gophercloud release to include description.
+	// Will update this field when description field is available.
 	// description of the existing resource
 	// +kubebuilder:validation:MinLength:=1
 	// +kubebuilder:validation:MaxLength:=255
 	// +optional
-	Description *string `json:"description,omitempty"`
+	// Description *string `json:"description,omitempty"`
 
 	// TODO(scaffolding): Add more types.
-	// To see what is supported, you can take inspiration from the ListOpts stucture from
+	// To see what is supported, you can take inspiration from the ListOpts structure from
 	// github.com/gophercloud/gophercloud/v2/openstack/identity/v3/roles
 }
 
@@ -63,14 +67,17 @@ type RoleResourceStatus struct {
 	// +optional
 	Name string `json:"name,omitempty"`
 
+	// TODO(dlawton): Waiting on Gophercloud release to include description.
+	// Will update this field when description field is available.
 	// description is a human-readable description for the resource.
 	// +kubebuilder:validation:MaxLength=1024
 	// +optional
-	Description string `json:"description,omitempty"`
+	// Description string `json:"description,omitempty"`
 
-	//DomainID string `json:"domainID,omitempty"`
+	// TODO(dlawton): Will update when Domain Controller is built
+	// DomainID string `json:"domainID,omitempty"`
 
 	// TODO(scaffolding): Add more types.
-	// To see what is supported, you can take inspiration from the Role stucture from
+	// To see what is supported, you can take inspiration from the Role structure from
 	// github.com/gophercloud/gophercloud/v2/openstack/identity/v3/roles
 }

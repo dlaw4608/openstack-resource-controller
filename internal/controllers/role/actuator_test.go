@@ -37,7 +37,7 @@ func TestNeedsUpdate(t *testing.T) {
 		},
 		{
 			name:         "Updated opts",
-			updateOpts:   roles.UpdateOpts{Name: ptr.To("updated")},
+			updateOpts:   roles.UpdateOpts{Name: "updated"},
 			expectChange: true,
 		},
 	}
@@ -87,6 +87,8 @@ func TestHandleNameUpdate(t *testing.T) {
 	}
 }
 
+// TODO(dlawton): Add test back in when description field is available in next gophercloud release.
+/*
 func TestHandleDescriptionUpdate(t *testing.T) {
 	ptrToDescription := ptr.To[string]
 	testCases := []struct {
@@ -117,3 +119,4 @@ func TestHandleDescriptionUpdate(t *testing.T) {
 
 	}
 }
+*/

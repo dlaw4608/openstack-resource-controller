@@ -2066,7 +2066,6 @@ _Appears in:_
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
 | `name` _[OpenStackName](#openstackname)_ | name of the existing resource |  | MaxLength: 255 <br />MinLength: 1 <br />Pattern: `^[^,]+$` <br /> |
-| `description` _string_ | description of the existing resource |  | MaxLength: 255 <br />MinLength: 1 <br /> |
 
 
 #### RoleImport
@@ -2103,7 +2102,6 @@ _Appears in:_
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
 | `name` _[OpenStackName](#openstackname)_ | name will be the name of the created resource. If not specified, the<br />name of the ORC object will be used. |  | MaxLength: 255 <br />MinLength: 1 <br />Pattern: `^[^,]+$` <br /> |
-| `description` _string_ | description is a human-readable description for the resource. |  | MaxLength: 255 <br />MinLength: 1 <br /> |
 
 
 #### RoleResourceStatus
@@ -2120,7 +2118,6 @@ _Appears in:_
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
 | `name` _string_ | name is a Human-readable name for the resource. Might not be unique. |  | MaxLength: 1024 <br /> |
-| `description` _string_ | description is a human-readable description for the resource. |  | MaxLength: 1024 <br /> |
 
 
 #### RoleSpec

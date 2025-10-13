@@ -19,7 +19,6 @@ package role
 import (
 	"context"
 	"iter"
-	"time"
 
 	"github.com/gophercloud/gophercloud/v2/openstack/identity/v3/roles"
 	corev1 "k8s.io/api/core/v1"
@@ -44,12 +43,6 @@ type (
 	resourceReconciler     = interfaces.ResourceReconciler[orcObjectPT, osResourceT]
 	helperFactory          = interfaces.ResourceHelperFactory[orcObjectPT, orcObjectT, resourceSpecT, filterT, osResourceT]
 )
-
-// The frequency to poll when waiting for the resource to become available
-const roleAvailablePollingPeriod = 15 * time.Second
-
-// The frequency to poll when waiting for the resource to be deleted
-const roleDeletingPollingPeriod = 15 * time.Second
 
 type roleActuator struct {
 	osClient  osclients.RoleClient
@@ -83,7 +76,7 @@ func (actuator roleActuator) ListOSResourcesForAdoption(ctx context.Context, orc
 
 	listOpts := roles.ListOpts{
 		Name: getResourceName(orcObject),
-		//Description: ptr.Deref(resourceSpec.Description, ""),
+		// Description: ptr.Deref(resourceSpec.Description, ""),
 	}
 
 	return actuator.osClient.ListRoles(ctx, listOpts), true
@@ -96,7 +89,7 @@ func (actuator roleActuator) ListOSResourcesForImport(ctx context.Context, obj o
 
 	listOpts := roles.ListOpts{
 		Name: string(ptr.Deref(filter.Name, "")),
-		//Description: string(ptr.Deref(filter.Description, "")),
+		// Description: string(ptr.Deref(filter.Description, "")),
 		// TODO(scaffolding): Add more import filters
 	}
 
@@ -113,7 +106,7 @@ func (actuator roleActuator) CreateResource(ctx context.Context, obj orcObjectPT
 	}
 	createOpts := roles.CreateOpts{
 		Name: getResourceName(obj),
-		//Description: ptr.Deref(resource.Description, ""),
+		// Description: ptr.Deref(resource.Description, ""),
 		// TODO(scaffolding): Add more fields
 	}
 
@@ -148,7 +141,7 @@ func (actuator roleActuator) updateResource(ctx context.Context, obj orcObjectPT
 	updateOpts := roles.UpdateOpts{}
 
 	handleNameUpdate(&updateOpts, obj, osResource)
-	//handleDescriptionUpdate(&updateOpts, resource, osResource)
+	// handleDescriptionUpdate(&updateOpts, resource, osResource)
 
 	// TODO(scaffolding): add handler for all fields supporting mutability
 
@@ -197,7 +190,7 @@ func handleNameUpdate(updateOpts *roles.UpdateOpts, obj orcObjectPT, osResource 
 	}
 }
 
-//func handleDescriptionUpdate(updateOpts *roles.UpdateOpts, resource *resourceSpecT, osResource *osResourceT) {
+// func handleDescriptionUpdate(updateOpts *roles.UpdateOpts, resource *resourceSpecT, osResource *osResourceT) {
 //	description := ptr.Deref(resource.Description, "")
 //	if osResource.Description != description {
 //		updateOpts.Description = &description

@@ -21,8 +21,7 @@ package v1alpha1
 // RoleResourceStatusApplyConfiguration represents a declarative configuration of the RoleResourceStatus type for use
 // with apply.
 type RoleResourceStatusApplyConfiguration struct {
-	Name        *string `json:"name,omitempty"`
-	Description *string `json:"description,omitempty"`
+	Name *string `json:"name,omitempty"`
 }
 
 // RoleResourceStatusApplyConfiguration constructs a declarative configuration of the RoleResourceStatus type for use with
@@ -36,13 +35,5 @@ func RoleResourceStatus() *RoleResourceStatusApplyConfiguration {
 // If called multiple times, the Name field is set to the value of the last call.
 func (b *RoleResourceStatusApplyConfiguration) WithName(value string) *RoleResourceStatusApplyConfiguration {
 	b.Name = &value
-	return b
-}
-
-// WithDescription sets the Description field in the declarative configuration to the given value
-// and returns the receiver, so that objects can be built by chaining "With" function invocations.
-// If called multiple times, the Description field is set to the value of the last call.
-func (b *RoleResourceStatusApplyConfiguration) WithDescription(value string) *RoleResourceStatusApplyConfiguration {
-	b.Description = &value
 	return b
 }
