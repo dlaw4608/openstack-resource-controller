@@ -2,7 +2,7 @@
 apiVersion: openstack.k-orc.cloud/v1alpha1
 kind: Domain
 metadata:
-  name: domain-sample
+  name: domain-enabled-true
 spec:
   cloudCredentialsRef:
     cloudName: devstack-admin
@@ -11,4 +11,5 @@ spec:
   resource:
     description: Sample Domain
     enabled: true
+    
 
