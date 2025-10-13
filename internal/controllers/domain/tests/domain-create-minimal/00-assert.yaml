@@ -1,0 +1,11 @@
+---
+apiVersion: openstack.k-orc.cloud/v1alpha1
+kind: Domain
+metadata:
+  name: domain-create-minimal
+status:
+  resource:
+    name: domain-create-minimal
+    enabled: false
+    # TODO(scaffolding): Add all fields the resource supports
+

@@ -29,6 +29,10 @@ type DomainResourceSpec struct {
 	// +optional
 	Description *string `json:"description,omitempty"`
 
+	// enabled defines whether a domain is enabled or not. Default is true.
+	// Note: Users can only authorize against an enabled domain (and any of its projects).
+	// +optional
+	Enabled *bool `json:"enabled,omitempty"`
 	// TODO(scaffolding): Add more types.
 	// To see what is supported, you can take inspiration from the CreateOpts stucture from
 	// github.com/gophercloud/gophercloud/v2/openstack/identity/v3/domains
@@ -67,6 +71,11 @@ type DomainResourceStatus struct {
 	// +kubebuilder:validation:MaxLength=1024
 	// +optional
 	Description string `json:"description,omitempty"`
+
+	// enabled defines whether a domain is enabled or not. Default is true.
+	// Note: Users can only authorize against an enabled domain (and any of its projects).
+	// +optional
+	Enabled *bool `json:"enabled,omitempty"`
 
 	// TODO(scaffolding): Add more types.
 	// To see what is supported, you can take inspiration from the Domain stucture from
