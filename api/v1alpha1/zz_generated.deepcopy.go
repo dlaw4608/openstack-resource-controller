@@ -157,7 +157,17 @@ func (in *DomainFilter) DeepCopyInto(out *DomainFilter) {
 	*out = *in
 	if in.Name != nil {
 		in, out := &in.Name, &out.Name
-		*out = new(OpenStackName)
+		*out = new(KeystoneName)
+		**out = **in
+	}
+	if in.Description != nil {
+		in, out := &in.Description, &out.Description
+		*out = new(string)
+		**out = **in
+	}
+	if in.Enabled != nil {
+		in, out := &in.Enabled, &out.Enabled
+		*out = new(bool)
 		**out = **in
 	}
 }

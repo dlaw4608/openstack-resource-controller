@@ -91,11 +91,20 @@ spec:
                       error state and will not continue to retry.
                     minProperties: 1
                     properties:
-                      name:
-                        description: name of the existing resource
+                      description:
+                        description: description of the existing resource
                         maxLength: 255
                         minLength: 1
-                        pattern: ^[^,]+$
+                        type: string
+                      enabled:
+                        description: |-
+                          enabled defines whether a domain is enabled or not. Default is true.
+                          Note: Users can only authorize against an enabled domain (and any of its projects).
+                        type: boolean
+                      name:
+                        description: name of the existing resource
+                        maxLength: 64
+                        minLength: 1
                         type: string
                     type: object
                   id:

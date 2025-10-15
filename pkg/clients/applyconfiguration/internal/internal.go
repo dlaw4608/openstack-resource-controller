@@ -123,6 +123,12 @@ var schemaYAML = typed.YAMLObject(`types:
 - name: com.github.k-orc.openstack-resource-controller.v2.api.v1alpha1.DomainFilter
   map:
     fields:
+    - name: description
+      type:
+        scalar: string
+    - name: enabled
+      type:
+        scalar: boolean
     - name: name
       type:
         scalar: string

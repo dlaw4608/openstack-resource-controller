@@ -703,6 +703,20 @@ func schema_openstack_resource_controller_v2_api_v1alpha1_DomainFilter(ref commo
 							Format:      "",
 						},
 					},
+					"description": {
+						SchemaProps: spec.SchemaProps{
+							Description: "description of the existing resource",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"enabled": {
+						SchemaProps: spec.SchemaProps{
+							Description: "enabled defines whether a domain is enabled or not. Default is true. Note: Users can only authorize against an enabled domain (and any of its projects).",
+							Type:        []string{"boolean"},
+							Format:      "",
+						},
+					},
 				},
 			},
 		},

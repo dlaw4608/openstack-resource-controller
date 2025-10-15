@@ -47,8 +47,18 @@ type DomainResourceSpec struct {
 type DomainFilter struct {
 	// name of the existing resource
 	// +optional
-	Name *OpenStackName `json:"name,omitempty"`
+	Name *KeystoneName `json:"name,omitempty"`
 
+	// description of the existing resource
+	// +kubebuilder:validation:MinLength:=1
+	// +kubebuilder:validation:MaxLength:=255
+	// +optional
+	Description *string `json:"description,omitempty"`
+
+	// enabled defines whether a domain is enabled or not. Default is true.
+	// Note: Users can only authorize against an enabled domain (and any of its projects).
+	// +optional
+	Enabled *bool `json:"enabled,omitempty"`
 	// TODO(scaffolding): Add more types.
 	// To see what is supported, you can take inspiration from the ListOpts stucture from
 	// github.com/gophercloud/gophercloud/v2/openstack/identity/v3/domains
